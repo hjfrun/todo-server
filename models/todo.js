@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const schema = new mongoose.Schema({
   name: String,
   user_id: {
+    select: false,
     type: mongoose.SchemaTypes.ObjectID, ref: 'User'
   },
   group_id: {
