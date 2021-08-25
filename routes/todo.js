@@ -1,6 +1,6 @@
 const express = require('express')
 
-const { fetchAllTodos, createTodo, fetchTodo, deleteTodo, updateTodo } = require('../controllers/todo.js')
+const { fetchAllTodos, createTodo, fetchTodo, deleteTodo, updateTodo } = require('../controllers/todo')
 
 const router = express.Router()
 

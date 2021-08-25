@@ -3,7 +3,7 @@ const assert = require('http-assert')
 
 const router = express.Router()
 
-const User = require('../models/user.js')
+const User = require('../models/user')
 
 router.post('/', async (req, res) => {
   try {

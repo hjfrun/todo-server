@@ -4,7 +4,7 @@ const {
   fetchAllUsers,
   fetchUser,
   createUser
-} = require('../controllers/user.js')
+} = require('../controllers/user')
 
 const router = express.Router()
 

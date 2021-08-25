@@ -1,7 +1,7 @@
 module.exports = options => {
   const jwt = require('jsonwebtoken')
   const assert = require('http-assert')
-  const User = require('../models/user.js')
+  const User = require('../models/user')
 
   return async (req, res, next) => {
     try {

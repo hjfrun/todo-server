@@ -5,9 +5,10 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const app = express()
 
-const todoRouter = require('./routes/todo.js')
-const loginRouter = require('./routes/login.js')
-const userRouter = require('./routes/user.js')
+const todoRouter = require('./routes/todo')
+const loginRouter = require('./routes/login')
+const userRouter = require('./routes/user')
+const groupRouter = require('./routes/group')
 const auth = require('./middlewares/auth')
 
 
@@ -18,6 +19,7 @@ app.use(express.json())
 const port = process.env.PORT || 5000
 
 app.use('/api/todo', auth(), todoRouter)
+app.use('/api/group', auth(), groupRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/user', userRouter)
 
