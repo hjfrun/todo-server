@@ -3,17 +3,21 @@ const assert = require('http-assert')
 
 const router = express.Router()
 
-const admin_password_hash = require('bcrypt').hashSync(process.env.PASSWORD || 'hjfrun', 10)
+const User = require('../models/user.js')
 
 router.post('/', async (req, res) => {
   try {
     const { username, password } = req.body
-    assert(username === process.env.USERNAME, 422, 'Please enter the correct username!')
 
-    const isValid = require('bcrypt').compareSync(password, admin_password_hash)
+    // find user by username
+    const user = await User.findOne({ username }).select('+password')
+    assert(user, 422, 'User Not Exist!')
+
+    // validate the password
+    const isValid = require('bcrypt').compareSync(password, user.password)
     assert(isValid, 422, 'Please enter the correct password!')
 
-    const token = require('jsonwebtoken').sign({ id: username }, process.env.TOKEN_SECRET, { expiresIn: '10800s' })
+    const token = require('jsonwebtoken').sign({ id: user._id }, process.env.TOKEN_SECRET, { expiresIn: '10800s' })
     res.send({ token })
   } catch (err) {
     res.status(err.statusCode || 500).send({ msg: err.message })
