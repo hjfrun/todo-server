@@ -2,7 +2,7 @@ const Todo = require('../models/todo.js')
 
 const fetchAllTodos = async (req, res) => {
   try {
-    const allTodos = await Todo.find()
+    const allTodos = await Todo.find({ user_id: req.user.id })
     res.status(200).json(allTodos)
   } catch (err) {
     res.status(404).json({ msg: err.message })
@@ -21,6 +21,8 @@ const fetchTodo = async (req, res) => {
 
 const createTodo = async (req, res) => {
   const todo = req.body
+  const { id: user_id } = req.user
+  todo.user_id = user_id
   const newTodo = new Todo(todo)
   try {
     await newTodo.save()
