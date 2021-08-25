@@ -7,6 +7,7 @@ const app = express()
 
 const todoRouter = require('./routes/todo.js')
 const loginRouter = require('./routes/login.js')
+const userRouter = require('./routes/user.js')
 const auth = require('./middlewares/auth')
 
 
@@ -18,6 +19,7 @@ const port = process.env.PORT || 5000
 
 app.use('/api/todo', auth(), todoRouter)
 app.use('/api/login', loginRouter)
+app.use('/api/user', userRouter)
 
 mongoose.connect(process.env.DB_URI, {
   useNewUrlParser: true,
