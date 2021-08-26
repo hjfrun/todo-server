@@ -4,7 +4,7 @@ const schema = new mongoose.Schema({
   name: String,
   user_id: {
     select: false,
-    type: mongoose.SchemaTypes.ObjectID, ref: 'User'
+    type: mongoose.SchemaTypes.ObjectId, ref: 'User'
   },
   group_id: {
     type: mongoose.SchemaTypes.ObjectId, ref: 'Group'
