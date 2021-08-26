@@ -10,6 +10,6 @@ const router = express.Router()
 
 router.get('/', fetchAllGroups)
 router.post('/', createGroup)
-router.delete('/', deleteGroup)
+router.delete('/:id', deleteGroup)
 
 module.exports = router
