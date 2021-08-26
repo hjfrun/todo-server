@@ -34,6 +34,18 @@ const deleteGroup = async (req, res) => {
   }
 }
 
+// update a group
+const updateGroup = async (req, res) => {
+  const id = req.params.id
+  const updates = req.body
+  try {
+    const newGroup = await Group.findByIdAndUpdate(id, updates, { new: true })
+    res.status(200).json({ msg: 'Group Updated Successfully!', newGroup })
+  } catch (err) {
+    res.status(404).json({ msg: err.message })
+  }
+}
+
 // rename group function
 // const renameGroup = async (req, res) => {
 
@@ -42,5 +54,6 @@ const deleteGroup = async (req, res) => {
 module.exports = {
   fetchAllGroups,
   createGroup,
-  deleteGroup
+  deleteGroup,
+  updateGroup
 }
