@@ -14,6 +14,8 @@ const schema = new mongoose.Schema({
     default: false
   },
   due_date: String
+}, {
+  timestamps: true
 })
 
 module.exports = new mongoose.model('Todo', schema)
